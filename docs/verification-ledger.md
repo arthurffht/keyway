@@ -46,7 +46,7 @@ Every platform fact that code depends on is confirmed here first ([PLAN.md §0, 
 - ☐ PowerProfiles `ActiveProfile`; the Rfkill Bluetooth property; NetworkManager polkit behaviour
 - ☐ SessionManager and logind method semantics
 - ☐ libadwaita 1.9 CSS variable names
-- ☐ GLib version shipped with GNOME 50; Meson and Blueprint versions on Ubuntu 26.04
+- ☐ GLib version shipped with GNOME 50 (☑ 2.88.0 on Ubuntu 26.04, CI log 2026-10-21); Meson and Blueprint versions on Ubuntu 26.04
 - ☐ dconf profile isolation via `DCONF_PROFILE`
 - ☐ Whether the GNOME OS nightly image can run a headless Shell in CI
 - ☑ `blueprint-compiler format --fix` — `-f, --fix` exists in blueprint-compiler 0.20.4 (`format --help`, 2026-10-21)

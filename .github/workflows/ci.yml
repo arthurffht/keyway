@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     container: ubuntu:26.10
     steps:
+      # Without git in the container, checkout falls back to a tarball and reuse lint
+      # no longer honours .gitignore.
+      - run: apt-get update -qq && apt-get install -y -qq --no-install-recommends git ca-certificates
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - run: ci/install-deps.sh ubuntu lint
       - name: Install the pinned toolchain
