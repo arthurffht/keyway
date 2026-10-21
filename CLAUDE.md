@@ -21,6 +21,7 @@ Architecture rules live in docs/adr/ — read them before changing structure.
 - just test       all PR suites except e2e
 - just e2e 51     end-to-end Shell suite in a container (also: just e2e 50)
 - just bench      deterministic benchmarks compared with main
+- /next-issue    pick the next roadmap issue and take it to a reviewed PR (.claude/skills/next-issue)
 - keywayctl query "<text>"   inspect ranking with per-source timings
 
 Recipes for components that do not exist yet (e2e, bench, extension lint) are added together
