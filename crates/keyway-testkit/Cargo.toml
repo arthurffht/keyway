@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+
+[package]
+name = "keyway-testkit"
+description = "Test harnesses for Keyway; development only, never shipped"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+gio.workspace = true
+glib.workspace = true
+
+[lints]
+workspace = true

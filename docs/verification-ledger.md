@@ -41,7 +41,7 @@ Every platform fact that code depends on is confirmed here first ([PLAN.md §0, 
 - ☐ `Main.osdWindowManager` method signature
 - ☐ `global.context.unsafe_mode` writable from a test extension
 - ☐ Nautilus and Characters provider bus names and paths
-- ☐ `SearchProvider2` `clipboardText` meta key
+- ☑ `SearchProvider2` `clipboardText` meta key — read by `ui/remoteSearch.js` in Shell 51 (see below)
 - ☐ `org.gnome.Settings` `launch-panel` action parameter
 - ☐ PowerProfiles `ActiveProfile`; the Rfkill Bluetooth property; NetworkManager polkit behaviour
 - ☐ SessionManager and logind method semantics
@@ -67,3 +67,15 @@ Every platform fact that code depends on is confirmed here first ([PLAN.md §0, 
 | `glib`, `gio` and `gtk4` 0.22/0.11 declare `rust-version = 1.92`, below the 1.93 MSRV | crates.io API |
 | Latest stable Rust at bootstrap is 1.99.1 (2026-10-13) | static.rust-lang.org channel manifest |
 | The Ubuntu `dh-cargo` package depends on `cargo`, which conflicts with `rustup`; Debian packaging tools therefore run in containers | `apt-get install -s` on Ubuntu 26.10 |
+
+## Verified for the minimal engine (2026-10-21, issue #1)
+
+| Fact | Evidence |
+|---|---|
+| GNOME Shell loads a search provider only if its `DesktopId` resolves to a desktop file whose app `should_show()`; otherwise it is skipped | *Measured*: `ui/remoteSearch.js` in Shell 51 (`GioUnix.DesktopAppInfo.new(desktopId)`, `should_show()`) |
+| `GetResultMetas` keys read by the Shell: `id`, `name`, `description`, `icon`, `gicon`, `icon-data`, `clipboardText` | *Measured*: `ui/remoteSearch.js` in Shell 51 |
+| `icon` must be `g_icon_serialize()` output (a variant); `gicon` (a string) is deprecated | `/usr/share/dbus-1/interfaces/org.gnome.ShellSearchProvider2.xml` |
+| gio-rs 0.22: `DBusConnection::register_object(..).typed_method_call::<T: DBusMethodCall>().invoke_and_return(..)`, `ApplicationImpl::dbus_register`/`dbus_unregister`, `ApplicationExtManual::hold` returning a guard, `TestDBus::add_service_dir`, `IconExt::serialize`, `glib::mkdtemp` | gio 0.22.10 and glib 0.22.10 sources |
+| GDBus validates incoming parameters against the registered introspection data before the method handler runs | gio 0.22 `RegistrationBuilder`; integration test |
+| A `G_APPLICATION_IS_SERVICE` engine exits when its bus connection closes, leaving no process behind | *Measured* with `dbus-run-session` |
+| `dbus-daemon` is a separate package (`dbus-daemon`) on Ubuntu 26.10 and Fedora; `gio::TestDBus` runs it (overridable with `G_TEST_DBUS_DAEMON`) | `apt-cache`, `libgio-2.0.so` strings |

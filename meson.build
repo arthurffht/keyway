@@ -19,9 +19,33 @@ endif
 object_path = '/io/github/arthurffht/Keyway'
 
 prefix = get_option('prefix')
+bindir = prefix / get_option('bindir')
 datadir = prefix / get_option('datadir')
 libexecdir = prefix / get_option('libexecdir')
 gettext_package = meson.project_name()
+
+cargo = find_program('cargo')
+cargo_env = environment()
+cargo_env.set('KEYWAY_APP_ID', app_id)
+
+# Cargo tracks its own dependencies, so the target always runs and Cargo decides what to rebuild.
+custom_target('cargo-build',
+  build_by_default: true,
+  build_always_stale: true,
+  console: true,
+  output: ['keyway-engine', 'keywayctl'],
+  install: true,
+  install_dir: [libexecdir, bindir],
+  env: cargo_env,
+  command: [
+    find_program('build-aux/cargo.sh'),
+    cargo,
+    meson.project_source_root(),
+    meson.project_build_root() / 'target',
+    get_option('profile'),
+    '@OUTPUT@',
+  ],
+)
 
 subdir('data')
 subdir('po')

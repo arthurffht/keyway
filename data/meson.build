@@ -6,9 +6,9 @@ conf.set('APP_ID', app_id)
 conf.set('OBJECT_PATH', object_path)
 conf.set('libexecdir', libexecdir)
 
-# The desktop entry, metainfo, D-Bus service and search provider are generated
-# and validated now, but installed only once the binaries they point to exist
-# (engine: Phase 0 step 0.7; preferences app: Phase 5).
+# The desktop entry and metainfo describe the preferences app, so they are installed with it
+# in Phase 5. The search provider waits for them too: GNOME Shell ignores a provider whose
+# DesktopId does not resolve to a visible app (ui/remoteSearch.js).
 
 desktop_in = configure_file(
   input: base_id + '.desktop.in',
@@ -39,6 +39,8 @@ configure_file(
   input: 'dbus' / base_id + '.Engine.service.in',
   output: app_id + '.Engine.service',
   configuration: conf,
+  install: true,
+  install_dir: datadir / 'dbus-1' / 'services',
 )
 
 configure_file(

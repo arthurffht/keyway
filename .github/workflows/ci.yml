@@ -35,7 +35,7 @@ jobs:
       - run: cargo fmt --all --check
       - run: cargo clippy --workspace --all-targets --locked -- -D warnings
       - run: cargo deny check
-      - run: shellcheck scripts/*.sh scripts/*/*.sh ci/*.sh
+      - run: shellcheck build-aux/*.sh scripts/*.sh scripts/*/*.sh ci/*.sh
 
   test:
     strategy:
@@ -49,5 +49,6 @@ jobs:
       - run: ci/install-deps.sh "${{ matrix.image }}" test
       - run: cargo --version && rustc --version
       - run: meson setup _build
+      - run: meson compile -C _build
       - run: meson test -C _build --suite data --print-errorlogs
       - run: cargo test --workspace --locked

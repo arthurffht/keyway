@@ -18,14 +18,15 @@ case "$image" in
         case "$job" in
             lint) apt-get install -y -qq --no-install-recommends "${common[@]}" curl rustup reuse shellcheck ;;
             # The distribution's own Rust, which is what packagers build with (1.93 on 26.04).
-            test) apt-get install -y -qq --no-install-recommends "${common[@]}" cargo rustc ;;
+            # dbus-daemon runs the isolated test bus (gio::TestDBus).
+            test) apt-get install -y -qq --no-install-recommends "${common[@]}" cargo rustc dbus-daemon ;;
             *) echo "unknown job: $job" >&2; exit 1 ;;
         esac
         ;;
     fedora*)
         [[ $job == test ]] || { echo "fedora runs only the test job" >&2; exit 1; }
         dnf install -y -q git gcc pkgconf meson ninja-build gettext desktop-file-utils \
-            appstream glib2-devel cargo rust
+            appstream glib2-devel cargo rust dbus-daemon
         ;;
     *)
         echo "unsupported image: $image" >&2
