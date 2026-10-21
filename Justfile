@@ -19,7 +19,7 @@ check:
     cargo clippy --workspace --all-targets --locked -- -D warnings
     cargo deny check
     reuse lint
-    shellcheck scripts/*.sh scripts/*/*.sh ci/*.sh
+    shellcheck build-aux/*.sh scripts/*.sh scripts/*/*.sh ci/*.sh
     meson test -C {{build}} --suite data --print-errorlogs
 
 test:

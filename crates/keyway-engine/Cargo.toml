@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+
+[package]
+name = "keyway-engine"
+description = "Keyway's search engine: a D-Bus-activated GIO service"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[dependencies]
+gio.workspace = true
+glib.workspace = true
+
+[dev-dependencies]
+keyway-testkit = { path = "../keyway-testkit" }
+
+[lints]
+workspace = true
