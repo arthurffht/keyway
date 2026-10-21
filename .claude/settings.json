@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(just:*)",
+      "Bash(cargo build:*)", "Bash(cargo test:*)", "Bash(cargo nextest:*)",
+      "Bash(cargo clippy:*)", "Bash(cargo fmt:*)", "Bash(cargo bench:*)",
+      "Bash(cargo deny:*)", "Bash(cargo llvm-cov:*)", "Bash(cargo tree:*)",
+      "Bash(meson:*)", "Bash(ninja:*)",
+      "Bash(npm --prefix extension:*)", "Bash(npx eslint:*)", "Bash(npx tsc:*)",
+      "Bash(blueprint-compiler:*)", "Bash(glib-compile-schemas:*)",
+      "Bash(appstreamcli validate:*)", "Bash(desktop-file-validate:*)", "Bash(reuse lint:*)",
+      "Bash(gresource list:*)", "Bash(gresource extract:*)",
+      "Bash(git status:*)", "Bash(git diff:*)", "Bash(git log:*)", "Bash(git show:*)",
+      "Bash(gh issue view:*)", "Bash(gh issue list:*)", "Bash(gh pr view:*)", "Bash(gh pr list:*)",
+      "Bash(gh pr checks:*)", "Bash(gh run view:*)", "Bash(gh run list:*)"
+    ],
+    "deny": [
+      "Bash(gsettings set:*)", "Bash(gsettings reset:*)",
+      "Bash(dconf write:*)", "Bash(dconf reset:*)", "Bash(dconf load:*)",
+      "Bash(gnome-extensions enable:*)", "Bash(gnome-extensions disable:*)",
+      "Bash(gnome-extensions install:*)", "Bash(gnome-extensions uninstall:*)",
+      "Bash(git push --force:*)", "Bash(git push -f:*)",
+      "Bash(gh pr merge:*)", "Bash(gh release create:*)", "Bash(gh repo edit:*)",
+      "Bash(gh repo delete:*)", "Bash(rm -rf:*)", "Bash(sudo:*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/scripts/hooks/format-changed.sh" }
+        ]
+      }
+    ]
+  }
+}

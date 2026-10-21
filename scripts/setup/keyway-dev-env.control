@@ -1,0 +1,45 @@
+Package: keyway-dev-env
+Version: 0.1.0
+Section: devel
+Priority: optional
+Architecture: all
+Maintainer: arthurffht <arthurffht@users.noreply.github.com>
+Homepage: https://github.com/arthurffht/keyway
+Depends: build-essential,
+ pkg-config,
+ git,
+ jq,
+ meson,
+ ninja-build,
+ just,
+ gh,
+ rustup,
+ libglib2.0-dev,
+ libgtk-4-dev,
+ libadwaita-1-dev,
+ blueprint-compiler,
+ gettext,
+ desktop-file-utils,
+ appstream,
+ reuse,
+ nodejs,
+ npm,
+ podman,
+ uidmap,
+ passt,
+ catatonit,
+ python3-dbusmock,
+ mutter-dev-bin,
+ sysprof,
+ hyperfine,
+ valgrind,
+ shellcheck
+Description: Host development environment for Keyway
+ Metapackage that pulls in every host tool Keyway development needs
+ (docs/PLAN.md §30.1). Removing it with
+ "apt purge keyway-dev-env && apt autoremove --purge" removes exactly
+ the packages it brought in.
+ .
+ Debian packaging tools (debhelper, dh-cargo, devscripts, lintian) are
+ deliberately excluded: dh-cargo conflicts with rustup, so packages are
+ built inside containers instead.

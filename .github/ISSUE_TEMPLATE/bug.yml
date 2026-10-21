@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+name: Bug report
+description: Something does not work as expected.
+labels: ["type:bug"]
+body:
+  - type: input
+    id: gnome
+    attributes:
+      label: GNOME version
+      placeholder: "51.0"
+    validations:
+      required: true
+  - type: input
+    id: distribution
+    attributes:
+      label: Distribution and version
+      placeholder: "Ubuntu 26.10"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What you typed or pressed, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `keywayctl doctor`
+      render: text

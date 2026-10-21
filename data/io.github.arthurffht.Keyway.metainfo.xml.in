@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: Keyway contributors -->
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+<component type="desktop-application">
+  <id>@APP_ID@</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Keyway</name>
+  <summary>Search and act instantly</summary>
+  <description>
+    <p>Keyway is a keyboard-first command bar for GNOME. Find apps, windows, files and settings,
+    and change settings in place with live controls and undo.</p>
+  </description>
+  <developer id="io.github.arthurffht">
+    <name translate="no">Keyway contributors</name>
+  </developer>
+  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
+  <url type="homepage">https://github.com/arthurffht/keyway</url>
+  <url type="bugtracker">https://github.com/arthurffht/keyway/issues</url>
+  <url type="vcs-browser">https://github.com/arthurffht/keyway</url>
+  <content_rating type="oars-1.1"/>
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </supports>
+  <branding>
+    <color type="primary" scheme_preference="light">#deddda</color>
+    <color type="primary" scheme_preference="dark">#3d3846</color>
+  </branding>
+  <releases>
+    <release version="0.1.0" date="2026-10-21" type="development">
+      <description>
+        <p>Project bootstrap.</p>
+      </description>
+    </release>
+  </releases>
+</component>

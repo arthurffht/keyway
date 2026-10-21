@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    container: ubuntu:26.10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: ci/install-deps.sh ubuntu lint
+      - name: Install the pinned toolchain
+        run: |
+          channel=$(sed -n 's/^channel = "\(.*\)"/\1/p' rust-toolchain.toml)
+          rustup toolchain install "$channel" --profile minimal --component rustfmt,clippy
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+      - uses: taiki-e/install-action@a4d3f3f761dcd95cce1b72cb61cb6d1963438177 # v2.87.30
+        with:
+          tool: cargo-deny
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo deny check
+      - run: reuse lint
+      - run: shellcheck scripts/*.sh scripts/*/*.sh ci/*.sh
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ["ubuntu:26.04", "ubuntu:26.10", "fedora:45"]   # GNOME 50 (MSRV), 51, 51
+    runs-on: ubuntu-latest
+    container: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: ci/install-deps.sh "${{ matrix.image }}" test
+      - run: cargo --version && rustc --version
+      - run: meson setup _build
+      - run: meson test -C _build --suite data --print-errorlogs
+      - run: cargo test --workspace --locked

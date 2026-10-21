@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+
+[package]
+name = "keyway-core"
+description = "Normalization, query parsing, matching, scoring and frecency for Keyway"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish = false
+
+[lints]
+workspace = true

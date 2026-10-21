@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+version = 1
+SPDX-PackageName = "keyway"
+SPDX-PackageDownloadLocation = "https://github.com/arthurffht/keyway"
+
+[[annotations]]
+path = ["**/*.md", "data/icons/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Keyway contributors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+[[annotations]]
+path = ["po/*.pot", "po/*.po"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Keyway contributors"
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+[[annotations]]
+path = [
+    "Cargo.lock",
+    ".gitignore",
+    ".editorconfig",
+    ".claude/settings.json",
+    ".github/rulesets/*.json",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".claude/**/*.md",
+    "data/*.desktop.in",
+    "data/dbus/*.service.in",
+    "data/search-provider/*.ini.in",
+    "scripts/setup/keyway-dev-env.control",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Keyway contributors"
+SPDX-License-Identifier = "CC0-1.0"

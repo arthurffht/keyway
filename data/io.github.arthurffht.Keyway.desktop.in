@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Keyway
+Comment=Search and act instantly
+Exec=keyway
+Icon=@APP_ID@
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
+Keywords=search;launcher;command;bar;settings;spotlight;
+StartupNotify=true
+DBusActivatable=true

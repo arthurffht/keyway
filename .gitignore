@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+/target/
+/_build/
+/fuzz/target/
+/fuzz/corpus/
+/fuzz/artifacts/
+node_modules/
+*.profraw
+*.profdata
+/lcov.info
+.claude/settings.local.json

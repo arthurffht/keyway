@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+data/io.github.arthurffht.Keyway.desktop.in
+data/io.github.arthurffht.Keyway.gschema.xml
+data/io.github.arthurffht.Keyway.metainfo.xml.in

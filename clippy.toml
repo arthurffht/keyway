@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+msrv = "1.93"
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-dbg-in-tests = true
+doc-valid-idents = ["GLib", "GObject", "GApplication", "GActions", "GSettings", "GDBus", "LocalSearch", ".."]

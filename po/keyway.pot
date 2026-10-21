@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the keyway package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: keyway\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-21 19:03-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/io.github.arthurffht.Keyway.desktop.in:2
+#: data/io.github.arthurffht.Keyway.metainfo.xml.in:8
+msgid "Keyway"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.desktop.in:3
+#: data/io.github.arthurffht.Keyway.metainfo.xml.in:9
+msgid "Search and act instantly"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons. The list MUST also end with a semicolon.
+#: data/io.github.arthurffht.Keyway.desktop.in:10
+msgid "search;launcher;command;bar;settings;spotlight;"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:14
+msgid "Show or hide the Keyway bar"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:19
+msgid "Bar width in logical pixels"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:24
+msgid "Number of visible results"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:28
+msgid "Show keyboard hints in the bar"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:32
+msgid "Enabled result sources"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:36
+msgid "Custom source priority; empty uses the built-in order"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:40
+msgid "Rank results using local usage history"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:44
+msgid "Abbreviations mapped to result identifiers"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:48
+msgid "Keep a clipboard history in memory"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:52
+msgid "How long clipboard entries are kept"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:57
+msgid "Maximum number of clipboard entries"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:61
+msgid "Web search URL; %s is replaced by the query"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:65
+msgid "Assistant handoff targets as (name, URL template)"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:70
+msgid "Seconds before the idle engine exits"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.gschema.xml:74
+msgid "Whether first-run setup has been completed"
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.metainfo.xml.in:11
+msgid ""
+"Keyway is a keyboard-first command bar for GNOME. Find apps, windows, files "
+"and settings, and change settings in place with live controls and undo."
+msgstr ""
+
+#: data/io.github.arthurffht.Keyway.metainfo.xml.in:33
+msgid "Project bootstrap."
+msgstr ""

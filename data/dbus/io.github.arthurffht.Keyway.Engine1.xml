@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: Keyway contributors -->
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+  "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="io.github.arthurffht.Keyway.Engine1">
+    <property name="ApiVersion"   type="u"  access="read"/>
+    <property name="Capabilities" type="as" access="read"/>
+
+    <method name="OpenSession">
+      <arg direction="in"  type="a{sv}"  name="context"/>
+      <arg direction="out" type="s"      name="session"/>
+    </method>
+    <method name="Search">
+      <arg direction="in"  type="s"      name="session"/>
+      <arg direction="in"  type="u"      name="serial"/>
+      <arg direction="in"  type="s"      name="query"/>
+      <arg direction="out" type="aa{sv}" name="results"/>   <!-- local batch only -->
+    </method>
+    <method name="Activate">
+      <arg direction="in"  type="s"      name="session"/>
+      <arg direction="in"  type="s"      name="result"/>
+      <arg direction="in"  type="s"      name="action"/>    <!-- "" = default action -->
+      <arg direction="in"  type="a{sv}"  name="platform"/>  <!-- timestamp, modifiers -->
+      <arg direction="out" type="a{sv}"  name="outcome"/>   <!-- intent (§12.2), undo token, message -->
+    </method>
+    <method name="SetValue">
+      <arg direction="in"  type="s"      name="session"/>
+      <arg direction="in"  type="s"      name="result"/>
+      <arg direction="in"  type="v"      name="value"/>
+      <arg direction="out" type="s"      name="undo"/>
+    </method>
+    <method name="Undo">
+      <arg direction="in"  type="s"      name="token"/>
+    </method>
+    <method name="CloseSession">
+      <arg direction="in"  type="s"      name="session"/>
+    </method>
+    <method name="PushClipboard">
+      <arg direction="in"  type="s"      name="text"/>
+      <arg direction="in"  type="x"      name="timestamp"/>
+    </method>
+    <method name="GetDiagnostics">
+      <arg direction="out" type="a{sv}"  name="report"/>
+    </method>
+
+    <signal name="ResultsAppended">                        <!-- unicast to the session owner -->
+      <arg type="s"      name="session"/>
+      <arg type="u"      name="serial"/>
+      <arg type="aa{sv}" name="results"/>
+      <arg type="b"      name="complete"/>
+    </signal>
+    <signal name="ValueChanged">                           <!-- keeps live controls in sync -->
+      <arg type="s" name="result"/>
+      <arg type="v" name="value"/>
+    </signal>
+    <signal name="ShowBar">                                <!-- emitted when Activities asks to "launch search" -->
+      <arg type="as" name="terms"/>
+    </signal>
+  </interface>
+</node>

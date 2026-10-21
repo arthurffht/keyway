@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: Keyway contributors -->
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+<schemalist gettext-domain="keyway">
+  <enum id="io.github.arthurffht.Keyway.ClipboardRetention">
+    <value nick="30m" value="0"/>
+    <value nick="8h"  value="1"/>
+    <value nick="24h" value="2"/>
+  </enum>
+
+  <schema id="io.github.arthurffht.Keyway" path="/io/github/arthurffht/Keyway/">
+    <key name="toggle-bar" type="as">
+      <default><![CDATA[['<Super>k']]]></default>
+      <summary>Show or hide the Keyway bar</summary>
+    </key>
+    <key name="bar-width" type="u">
+      <range min="480" max="960"/>
+      <default>680</default>
+      <summary>Bar width in logical pixels</summary>
+    </key>
+    <key name="visible-results" type="u">
+      <range min="4" max="12"/>
+      <default>8</default>
+      <summary>Number of visible results</summary>
+    </key>
+    <key name="show-footer-hints" type="b">
+      <default>true</default>
+      <summary>Show keyboard hints in the bar</summary>
+    </key>
+    <key name="sources-enabled" type="as">
+      <default>['apps', 'settings', 'windows', 'files', 'recent', 'calculator', 'emoji', 'providers', 'system', 'commands', 'handoff']</default>
+      <summary>Enabled result sources</summary>
+    </key>
+    <key name="sources-order" type="as">
+      <default>[]</default>
+      <summary>Custom source priority; empty uses the built-in order</summary>
+    </key>
+    <key name="learn-from-usage" type="b">
+      <default>true</default>
+      <summary>Rank results using local usage history</summary>
+    </key>
+    <key name="quick-keys" type="a{ss}">
+      <default>{}</default>
+      <summary>Abbreviations mapped to result identifiers</summary>
+    </key>
+    <key name="clipboard-history" type="b">
+      <default>false</default>
+      <summary>Keep a clipboard history in memory</summary>
+    </key>
+    <key name="clipboard-retention" enum="io.github.arthurffht.Keyway.ClipboardRetention">
+      <default>'8h'</default>
+      <summary>How long clipboard entries are kept</summary>
+    </key>
+    <key name="clipboard-max-items" type="u">
+      <range min="10" max="100"/>
+      <default>50</default>
+      <summary>Maximum number of clipboard entries</summary>
+    </key>
+    <key name="web-search-template" type="s">
+      <default>'https://duckduckgo.com/?q=%s'</default>
+      <summary>Web search URL; %s is replaced by the query</summary>
+    </key>
+    <key name="assistant-templates" type="a(ss)">
+      <default>[]</default>
+      <summary>Assistant handoff targets as (name, URL template)</summary>
+    </key>
+    <key name="engine-idle-timeout" type="u">
+      <range min="30" max="3600"/>
+      <default>600</default>
+      <summary>Seconds before the idle engine exits</summary>
+    </key>
+    <key name="onboarding-complete" type="b">
+      <default>false</default>
+      <summary>Whether first-run setup has been completed</summary>
+    </key>
+  </schema>
+</schemalist>

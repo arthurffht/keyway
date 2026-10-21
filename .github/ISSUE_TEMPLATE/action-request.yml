@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+name: Action request
+description: Ask for a setting or system action that Keyway should be able to change.
+labels: ["area:catalog", "type:feature"]
+body:
+  - type: input
+    id: setting
+    attributes:
+      label: Setting or action
+      placeholder: "Show battery percentage"
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Where it lives in GNOME Settings
+      placeholder: "Settings › Power › Show Battery Percentage"
+    validations:
+      required: true
+  - type: textarea
+    id: phrases
+    attributes:
+      label: Phrases people would type
+      description: One per line, in any language. Say which language each is in.
+    validations:
+      required: true
