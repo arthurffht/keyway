@@ -7,3 +7,4 @@
 //! This crate must not depend on GLib (docs/PLAN.md §10.4).
 
 pub mod normalize;
+pub mod query;
