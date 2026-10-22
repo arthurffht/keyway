@@ -25,6 +25,9 @@ check:
 test:
     cargo nextest run --workspace --locked --no-tests=pass
 
+fuzz target seconds="60":
+    cargo +nightly fuzz run --fuzz-dir fuzz {{target}} -- -max_total_time={{seconds}}
+
 cov:
     cargo llvm-cov nextest --workspace --html --no-tests=pass
 

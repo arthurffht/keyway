@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: Keyway contributors
+# SPDX-License-Identifier: CC0-1.0
+
+[package]
+name = "keyway-fuzz"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+keyway-core = { path = "../crates/keyway-core" }
+
+[[bin]]
+name = "query"
+path = "fuzz_targets/query.rs"
+test = false
+doc = false
+bench = false
+
+[workspace]
