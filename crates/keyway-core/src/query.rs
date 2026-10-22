@@ -46,11 +46,6 @@ impl Scope {
             _ => return None,
         })
     }
-
-    /// Only these scopes address actions, which are the ones that take values.
-    fn accepts_value(scope: Option<Self>) -> bool {
-        matches!(scope, None | Some(Self::Settings | Self::Commands))
-    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -75,7 +70,8 @@ pub fn parse(input: &str, decimal: DecimalSeparator) -> Query<'_> {
         Some(_) => input[1..].trim_start(),
         None => input,
     };
-    if Scope::accepts_value(scope) {
+    // Only these scopes address actions, which are the ones that take values.
+    if matches!(scope, None | Some(Scope::Settings | Scope::Commands)) {
         // Longest suffix first, so `10 min` is a duration and not the number 10.
         let starts = std::iter::once(0).chain(
             body.char_indices()
@@ -163,6 +159,10 @@ fn duration(s: &str, decimal: DecimalSeparator) -> Option<Duration> {
 }
 
 fn unit(word: &str) -> Option<(u8, f64)> {
+    // The longest unit is "minutes"; this keeps long words from being lowercased.
+    if word.len() > 7 {
+        return None;
+    }
     Some(match word.to_ascii_lowercase().as_str() {
         "h" | "hr" | "hrs" | "hour" | "hours" => (0, 3600.0),
         "m" | "min" | "mins" | "minute" | "minutes" => (1, 60.0),
@@ -209,7 +209,12 @@ mod tests {
     fn empty_input_is_an_empty_query() {
         let q = parse("", Point);
         assert_eq!((q.scope, q.text, q.value), (None, "", None));
-        assert_eq!(parse("/", Point).scope, Some(Scope::Settings));
+    }
+
+    #[test]
+    fn a_scope_character_alone_has_an_empty_body() {
+        let q = parse("/", Point);
+        assert_eq!((q.scope, q.text), (Some(Scope::Settings), ""));
     }
 
     #[test]
@@ -277,9 +282,9 @@ mod tests {
 
     proptest! {
         #[test]
-        fn never_panics(input in any::<String>(), comma in any::<bool>()) {
+        fn text_is_a_slice_of_the_input(input in any::<String>(), comma in any::<bool>()) {
             let q = parse(&input, if comma { Comma } else { Point });
-            prop_assert!(input.contains(q.text));
+            prop_assert!(input.contains(q.text) && q.text == q.text.trim());
         }
     }
 }

@@ -8,7 +8,11 @@ use libfuzzer_sys::fuzz_target;
 
 fuzz_target!(|input: (bool, &str)| {
     let (comma, text) = input;
-    let decimal = if comma { DecimalSeparator::Comma } else { DecimalSeparator::Point };
+    let decimal = if comma {
+        DecimalSeparator::Comma
+    } else {
+        DecimalSeparator::Point
+    };
     let query = parse(text, decimal);
-    assert!(text.contains(query.text));
+    assert!(text.contains(query.text) && query.text == query.text.trim());
 });
