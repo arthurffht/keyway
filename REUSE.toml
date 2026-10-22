@@ -19,6 +19,7 @@ SPDX-License-Identifier = "GPL-3.0-or-later"
 [[annotations]]
 path = [
     "Cargo.lock",
+    "fuzz/Cargo.lock",
     ".gitignore",
     ".editorconfig",
     ".claude/settings.json",
